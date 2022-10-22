@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.getName()}">One book</title>
+</head>
+<body>
+<p>User:</p>
+<p th:text="'Title: '+${book.getName()}" >Name</p>
+<p th:text="'Author: '+${book.getAuthor()}" >Author</p>
+<p th:text="'Year of publication: '+${book.getYear()}" >Born</p>
+
+<b>Readers:  </b>
+<div th:each = "reader : ${reader}">
+    <a th:href="@{/library/{id}(id=${reader.getId()})}" th:text="${reader.getName()}">name</a>
+</div>
+<br>
+<br>
+
+
+
+<form th:method="post" th:action="@{/book/{id}/set_reader(id=${book.getId()})}">
+    <label for="people">Choise reader</label>
+    <select th:object="${person}" th:field="*{id}" id="people">
+        <option th:each="per : ${people}" th:value="${per.getId()}"
+                th:text="${per.getName()}"></option>
+    </select>
+    <input type="submit" value="Set reader">
+</form>
+
+</body>
+<br>
+<a th:href="@{/book/{id}/edit(id=${book.getId()})}" th:text="'edit ' + ${book.getName()} ">edit book</a>
+<br>
+<a th:href="@{/book/{id}/del(id=${book.getId()})}" th:text="'del ' + ${book.getName()} ">del book</a>
+<br>
+<a href="/book">all book</a>
+<br>
+<a href="/library">all users</a>
+
+</html>

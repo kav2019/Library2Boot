@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${people.getName()}">One people</title>
+</head>
+<body>
+<p>User:</p>
+<p th:text="'Name: '+${people.getName()}" >Name</p>
+<p th:text="'Year of bithday: '+${people.getYearBorn()}" >Born</p>
+
+<p>Books to read</p>
+<div th:each = "book : ${books}">
+    <a th:href="@{/book/{id}(id=${book.getId()})}" th:text="${book.getName()}">name</a>
+    <a th:href="@{/library/{idP}/del_book/{idB}(idP=${people.getId()},idB=${book.getId()})}" th:text="del">del book</a>
+</div>
+
+</body>
+<br>
+<a th:href="@{/library/{id}/edit(id=${people.getId()})}" th:text="'edit ' + ${people.getName()} ">edit user</a>
+<br>
+<a th:href="@{/library/{id}/del(id=${people.getId()})}" th:text="'del ' + ${people.getName()} ">del user</a>
+<br>
+<!--<a th:href="@{/library}" th:text="all users">all users age</a>-->
+<a href="/library">all users</a>
+</html>

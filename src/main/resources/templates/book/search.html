@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Search books</title>
+</head>
+
+<body>
+
+<a th:href="@{/book?page=0&books_per_page=3}">per 3 book</a>
+<a th:href="@{/book?page=0&books_per_page=5}">per 5 book</a>
+<a th:href="@{/book?page=0&books_per_page=10}">per 10 book</a>
+<br>
+<form action="/book/search">
+  <input name="search_book">
+  <button type="submit">Search</button>
+</form>
+<br>
+
+
+<p>Searching book:  </p>
+<div th:each = "books : ${book}">
+  <a th:href="@{/book/{id}(id=${books.getId()})}" th:text="${books.getName()}">name</a>
+</div>
+
+<br>
+<a th:href="@{/book/new_book}">create new book</a>
+<br>
+<a th:href="@{/library}">all users</a>
+
+
+
+
+</body>
+
+</html>
