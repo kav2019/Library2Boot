@@ -8,6 +8,8 @@
 
 <body>
 
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
 <p>Users:  </p>
 <div th:each = "person : ${people}">
     <a th:href="@{/library/{id}(id=${person.getId()})}" th:text="${person.getName()}">name</a>
@@ -19,7 +21,9 @@
 <br>
 <a th:href="@{/book}">all book</a>
 
-
+<form action="/auth/logout" method="POST">
+    <button type="submit">Выход из учетной записи</button>
+</form>
 
 
 </body>

@@ -5,6 +5,9 @@
     <title th:text="${book.getName()}">One book</title>
 </head>
 <body>
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
+
 <p>User:</p>
 <p th:text="'Title: '+${book.getName()}" >Name</p>
 <p th:text="'Author: '+${book.getAuthor()}" >Author</p>
@@ -37,5 +40,9 @@
 <a href="/book">all book</a>
 <br>
 <a href="/library">all users</a>
+
+<form action="/auth/logout" method="POST">
+    <button type="submit">Выход из учетной записи</button>
+</form>
 
 </html>

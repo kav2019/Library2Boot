@@ -5,6 +5,8 @@
     <title>Edit usersss</title>
 </head>
 <body>
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
 <a href="/library">all users</a>
 <br>
 <form th:method="patch" th:action="@{/library/{id}(id=${people.getId()})}" th:object="${people}">

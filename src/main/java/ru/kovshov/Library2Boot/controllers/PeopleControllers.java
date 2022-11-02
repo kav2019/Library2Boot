@@ -3,6 +3,8 @@ package ru.kovshov.Library2Boot.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,9 @@ public class PeopleControllers {
     @GetMapping() //показать всех пользователей
     public String allUsers(Model model){
         model.addAttribute("people", peopleService.returnAllPeople());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "people/all_users";
     }
 
@@ -29,12 +34,18 @@ public class PeopleControllers {
     public String getOnePeople(@PathVariable("id") int id, Model model){
         model.addAttribute("people", peopleService.returnOnePeople(id));
         model.addAttribute("books", peopleService.bookListUsing(id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "people/one_user";
     }
 
     @GetMapping("/{id}/edit")  //показать страницу с полями для изменения юзера
     public String editPeople(Model model, @PathVariable("id") int id){
         model.addAttribute("people", peopleService.returnOnePeople(id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "people/edit_users";
     }
 

@@ -17,15 +17,38 @@ public class User {
     private String password;
 
     @Column(name = "role")
-    private String role;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private Status status;
 
     public User() {
     }
 
-    public User(String username, String password, String role) {
+    public User(int id, String username, String password, Role role, Status status) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.status = status;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public int getId() {
@@ -52,13 +75,7 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     public String toString() {

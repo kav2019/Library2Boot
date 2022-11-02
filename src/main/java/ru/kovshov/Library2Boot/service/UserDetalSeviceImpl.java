@@ -11,12 +11,12 @@ import ru.kovshov.Library2Boot.security.UserDetail;
 
 import java.util.Optional;
 
-@Service
-public class UserDetalSevice implements UserDetailsService {
+@Service("userDetalSeviceImpl")
+public class UserDetalSeviceImpl implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserDetalSevice(UserRepository userRepository) {
+    public UserDetalSeviceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

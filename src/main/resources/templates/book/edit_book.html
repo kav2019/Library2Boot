@@ -5,6 +5,9 @@
     <title>Edit book</title>
 </head>
 <body>
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
+
 <a href="/book">all books</a>
 <br>
 <form th:method="patch" th:action="@{/book/{id}(id=${book.getId()})}" th:object="${book}">

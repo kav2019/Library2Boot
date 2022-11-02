@@ -5,6 +5,8 @@
     <title th:text="${people.getName()}">One people</title>
 </head>
 <body>
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
 <p>User:</p>
 <p th:text="'Name: '+${people.getName()}" >Name</p>
 <p th:text="'Year of bithday: '+${people.getYearBorn()}" >Born</p>
@@ -23,4 +25,8 @@
 <br>
 <!--<a th:href="@{/library}" th:text="all users">all users age</a>-->
 <a href="/library">all users</a>
+
+<form action="/auth/logout" method="POST">
+    <button type="submit">Выход из учетной записи</button>
+</form>
 </html>

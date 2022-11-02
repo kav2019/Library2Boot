@@ -8,6 +8,9 @@
 
 <body>
 
+<p th:text="'You authorization ' + ${nameuser}">Name user</p>
+<br>
+
 <a th:href="@{/book?page=0&books_per_page=3}">per 3 book</a>
 <a th:href="@{/book?page=0&books_per_page=5}">per 5 book</a>
 <a th:href="@{/book?page=0&books_per_page=10}">per 10 book</a>
@@ -28,6 +31,10 @@
 <a th:href="@{/book/new_book}">create new book</a>
 <br>
 <a th:href="@{/library}">all users</a>
+
+<form action="/auth/logout" method="POST">
+    <button type="submit">Выход из учетной записи</button>
+</form>
 
 
 

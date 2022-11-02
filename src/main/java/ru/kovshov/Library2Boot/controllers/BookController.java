@@ -3,6 +3,8 @@ package ru.kovshov.Library2Boot.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,9 @@ public class BookController {
                           @RequestParam(value = "page", required = false, defaultValue = "0") int page,
                           @RequestParam(value = "books_per_page", required = false, defaultValue = "10") int booksPerPage){
         model.addAttribute("book", bookService.returnBookOnPage(page, booksPerPage));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "book/all_books";
     }
 
@@ -44,12 +49,18 @@ public class BookController {
         peopleForSetRead.removeAll(reader); //все кто еще не читает эту книгу
         model.addAttribute("people", peopleForSetRead); //люди в выпадающем списке которых можно назначить читающим
         model.addAttribute("reader", reader); //список людей которые читают данную книгу
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "book/one_book";
     }
 
     @GetMapping("/{id}/edit") //показать страницу с полями для изменения юзера
     public String editBook(Model model, @PathVariable("id") int id){
         model.addAttribute("book", bookService.returnOneBook(id));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        model.addAttribute("nameuser", name);
         return "book/edit_book";
     }
 
