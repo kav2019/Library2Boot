@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kovshov.Library2Boot.exeption.NotFoundFromDBExeption;
 import ru.kovshov.Library2Boot.models.Book;
 import ru.kovshov.Library2Boot.models.People;
 import ru.kovshov.Library2Boot.repository.BookRpository;
@@ -43,7 +44,8 @@ public class BookService {
 
     //метод возвращающий одну книгу
     public Book returnOneBook(int id){
-        return bookRpository.findById(id).orElse(null);
+//        return bookRpository.findById(id).orElse(null);
+        return bookRpository.findById(id).orElseThrow(NotFoundFromDBExeption::new);
     }
 
     //метод добавляющий книгу

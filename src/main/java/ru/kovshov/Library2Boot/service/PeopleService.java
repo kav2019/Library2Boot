@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.kovshov.Library2Boot.exeption.NotFoundFromDBExeption;
 import ru.kovshov.Library2Boot.models.Book;
 import ru.kovshov.Library2Boot.models.People;
 import ru.kovshov.Library2Boot.repository.PeopleRepository;
@@ -28,7 +29,8 @@ public class PeopleService {
 
     //метод возвращающий ОДНОГО пользователя по id
     public People returnOnePeople(int id){
-        return peopleRepository.findById(id).orElse(null);
+//        return peopleRepository.findById(id).orElse(null);
+        return peopleRepository.findById(id).orElseThrow(NotFoundFromDBExeption::new);
     }
 
     //метод сохраяющий изменения ОДНОГО пользователей
